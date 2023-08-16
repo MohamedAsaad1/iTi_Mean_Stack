@@ -1,0 +1,43 @@
+
+<!-- <div>
+    <button type="button" class="btn btn-primary float-end mb-5" (click)="toggleLang()">{{lang=="ar-SA"?'English':'Arabic'}}</button>
+   </div>
+  <div>
+    <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default"
+    [(ngModel)]="searchValue"
+    >
+  </div> -->
+  <div class="d-flex justify-content-center" *ngIf="isloading">
+    <div class="spinner-border" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+  <div class="row" *ngIf="!isloading" >
+    
+    <div class="card movie_card col-lg-4 mt-3"  *ngFor="let movie of Moives" onclick="test('movie.id')" >
+      <div [routerLink]="['/akamovie',movie.id]" *ngIf="movie" >
+        <img
+          [src]="movie.images[0]"
+          class="card-img-top"
+          alt="..."
+        />
+        <div class="card-body" > 
+          <h5 class="card-title">{{ movie.title| mycustom }}</h5>
+          <span class="movie_info">{{ movie.year | date }}</span>
+          
+          <!-- <p>{{movie.overview | lowercase}}</p> -->
+          <!-- <button class="btn btn-success d-block" [disabled]="myMovie1.notValiable">Watch</button>
+          <button class="btn btn-primary d-block" *ngIf="myMovie1.inStock">Add to Cart</button> -->
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr>
+  <mat-paginator [length]="totalItems"
+                [pageSize]="page"
+                aria-label="Select page"
+                [pageSizeOptions]="listofpageSize"
+                (page)="changePage($event)">
+  </mat-paginator>
+  
+  
