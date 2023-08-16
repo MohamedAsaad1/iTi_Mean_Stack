@@ -136,7 +136,7 @@
 function hello(){
     return new Promise((reslove) =>{
         setTimeout(()=>{
-            alert("Welcome");
+            reslove(alert("Welcome"));
         },300)
     })
 
